@@ -5,13 +5,14 @@ import (
 	"net/http"
 
 	"github.com/gorilla/schema"
+	log "github.com/sirupsen/logrus"
+
 	"github.com/kishor82/goapi/api"
 	"github.com/kishor82/goapi/internal/tools"
-	log "github.com/sirupsen/logrus"
 )
 
 func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
-	var params = api.CoinBalanceParamas{}
+	params := api.CoinBalanceParamas{}
 	var decoder *schema.Decoder = schema.NewDecoder()
 	var err error
 
@@ -40,7 +41,7 @@ func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var response = api.CoinBalanceResponse{
+	response := api.CoinBalanceResponse{
 		Balance: (*tokenDetails).Coins,
 		Code:    http.StatusOK,
 	}
